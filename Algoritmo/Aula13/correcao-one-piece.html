@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input placeholder="batalhas" type="text" id="ipt_batalhas">
+    <input placeholder="marinheiros" type="text" id="ipt_marinheiros">
+    <input placeholder="carnes" type="text" id="ipt_carnes">
+
+    <button onclick="iniciar_batalhas()">Iniciar</button>
+    <div id="resultado"></div>
+</body>
+<script>
+    function iniciar_batalhas() {
+
+        let qtd_batalhas = Number(ipt_batalhas.value);
+        let qtd_marinheiros = Number(ipt_marinheiros.value);
+        let qtd_carnes = Number(ipt_carnes.value);
+
+        let energia_atual = 100;
+
+        let frase_final = "";
+
+        for (let i = 1; i <= qtd_batalhas; i++) {
+
+            let energia_marinheiros = qtd_marinheiros * 5;
+            console.log(`energia Atual: ${energia_atual}`);
+            
+
+            //não tenho energia nem carne
+            if ((energia_atual <= 0) && qtd_carnes <= 0) {
+                frase_final += `<br> 🛞 Não é possível iniciar a ${i}º batalha, acabou a carne e a energia.`
+            } else {
+                frase_final += ` --------------------------------- <br>
+                                ${i}° Batalha Iniciada: <br>
+                                Quantidade de Energia Inicial: ${energia_atual} <br><br>`
+                
+                //se eu não tenho energia suficente mas tenho carne:
+
+                if(energia_atual < 0){
+                    if(qtd_carnes > 0){
+                        qtd_carnes--;
+                        energia_atual -= energia_marinheiros;
+                        energia_atual += 100;
+                        frase_final += `Resultado: Luffy saiu vitorioso, derrotando ${qtd_marinheiros} marinheiro(s) <br>`
+                    } else if(qtd_carnes <= 0){
+                        let qtd_marinheiros_mortos = Math.floor((energia_atual * qtd_marinheiros) / 100);
+                        energia_atual -= energia_marinheiros;
+                        frase_final += `Resultado: Luffy saiu derrotado, derrotando ${qtd_marinheiros_mortos} marinheiro(s) <br>`
+                    }
+                } else{
+                    energia_atual -= energia_marinheiros;
+                    frase_final += `Resultado: Luffy saiu vitorioso, derrotando ${qtd_marinheiros} marinheiro(s) <br>`
+                }
+
+                // if ((energia_atual < 0 && qtd_carnes > 0)) {
+                //     qtd_carnes--;
+                //     energia_atual += 100;
+                //     energia_atual -= energia_marinheiros;
+
+                //     frase_final += `Resultado: Luffy saiu vitorioso, derrotando ${qtd_marinheiros} marinheiro(s) <br>`
+                // } else if(energia_atual > 0 && qtd_carnes < 0){
+                //     let qtd_marinheiros_mortos = (energia_atual * qtd_marinheiros) / 100;
+                //     energia_atual -= energia_marinheiros;
+                //     console.log(qtd_marinheiros_mortos);
+
+                //     frase_final += `Resultado: Luffy saiu derrotado, derrotando ${qtd_marinheiros_mortos} marinheiro(s) <br>`
+                // }
+
+                frase_final += `⚡ Energia Restante no Final da Batalha: ${energia_atual} <br>
+                                 🥩 Carnes Restantes no Final da Batalha: ${qtd_carnes}<br>`;
+            }
+
+            energia_atual -= 10;
+        }
+
+        resultado.innerHTML = frase_final;
+
+    }
+</script>
+
+</html>

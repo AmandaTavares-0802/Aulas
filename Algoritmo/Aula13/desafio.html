@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Simulador de batalhas</h1>
+    <label for="">Quantidade de batalhas</label>
+    <input type="text" id="ipt_qtd_batalhas"><br>
+    
+    <label for="">Quantidade de marinheiros</label>
+    <input type="text" id="ipt_qtd_marinheiros"><br>
+
+    <label for="">Quantidade de carnes</label>
+    <input type="text" id="ipt_qtd_carnes"><br><br>
+
+    <button onclick="batalhar()">É hora do duelo!!!!!</button>
+
+    <div id="id_resultado"></div>
+</body>
+<script>
+    function batalhar(){
+        let qtd_batalhas = Number(ipt_qtd_batalhas.value)
+        let qtd_marinheiros = Number(ipt_qtd_marinheiros.value)
+        let qtd_carnes = Number(ipt_qtd_carnes.value)
+
+        let energia = 100;
+        let resultado;
+
+
+        id_resultado.innerHTML = ``
+        for(let batalhas = 1; batalhas <= qtd_batalhas; batalhas++){
+            let qtd_energia_marinheiros = qtd_marinheiros * 5;
+
+            if(energia <= 0 && qtd_carnes <= 0){
+                id_resultado.innerHTML += `<br>------------------------------------------<br>`
+                id_resultado.innerHTML += `<br>🛞 Não é possível iniciar a ${batalhas}º batalha, acabou a carne e a energia.`
+            } else{
+                id_resultado.innerHTML += `<br>------------------------------------------<br>`
+                id_resultado.innerHTML += `
+                ${batalhas}° Batalha Iniciada: <br>
+                Quantidade de Energia Inicial: ${energia} <br><br>
+                
+                `
+
+                if (energia > 0){
+                    energia -= qtd_energia_marinheiros;
+                    id_resultado.innerHTML += `Resultado: Luffy saiu vitorioso, derrotando ${qtd_marinheiros} marinheiro(s) <br>`
+                    console.log(energia)
+                } else if(energia <= 0){
+                    if (qtd_carnes > 0){
+                        qtd_carnes--;
+                        energia += 100;
+                        console.log(energia);
+                        id_resultado.innerHTML += `🥩 Luffy comeu uma carne<br>
+                        Energia antes de lutar: ${energia} <br><br>
+                        `
+                        energia -= qtd_energia_marinheiros
+                        id_resultado.innerHTML += `Resultado: Luffy saiu vitorioso, derrotando ${qtd_marinheiros} marinheiro(s) <br>`
+                    }else if(qtd_carnes <= 0){
+                        let qtd_marinheiros_mortos = Math.floor((energia * qtd_marinheiros) / 100);
+                        energia -= qtd_energia_marinheiros
+                        id_resultado.innerHTML += `Resultado: Luffy saiu derrotado, derrotando ${qtd_marinheiros_mortos} marinheiro(s) <br>`
+                    }
+                }
+
+                id_resultado.innerHTML += `
+                    ⚡ Energia Restante no Final da Batalha: ${energia}<br>
+                    🥩 Carnes Restantes no Final da Batalha: ${qtd_carnes}<br>
+                
+                `
+
+            }
+
+
+            // if (energia > 0){
+            //     id_resultado.innerHTML += `${batalhas}° batalha iniciada<br>`;
+            //     id_resultado.innerHTML += `Quantidade de Energia: ${energia}<br>`;
+
+            //     resultado = qtd_marinheiros * 5;
+            //     energia = energia - resultado
+            //     marinheiros_derrotados = resultado
+
+            //     console.log(marinheiros_derrotados);
+
+            // }else if(energia <= 0 && qtd_carnes == 0){
+            //     id_resultado.innerHTML += `🛞 Não é possível iniciar a ${batalhas}° batalha, acabou a carne e a energia<br>`
+            // } else if(energia <=0 && qtd_carnes > 0){
+            //     qtd_carnes = qtd_carnes - 1
+            //     energia = energia + 100
+            //     id_resultado.innerHTML += `${energia}° batalha iniciada<br>`;
+            // }
+
+            energia = energia - 10
+            id_resultado.innerHTML += `Acabou a batalha!!! diminuindo -10 de energia`
+        }
+
+    }
+</script>
+</html>
