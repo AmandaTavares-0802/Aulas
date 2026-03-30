@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanji</title>
+</head>
+<body>
+    <h2>Cadastrar Estoque de Comidas</h2>
+    <input type="text" id="ipt_cadastro"><br><br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="qtd_verificar()">Verificar quantidade</button>
+    <div id="resultado_qtd"></div>
+
+    <h3>Verificar Estoque</h3>
+    <input type="text" id="ipt_pesquisa">
+    <button onclick="Pesquisar()">Pesquisar</button><br><br>
+    <button onclick="estoque()">exibir estoque</button>
+    <div id="exibir"></div>
+
+    <h3>Alterando o nome da comida</h3>
+    
+</body>
+<script>
+    let alimentos = [];
+    let fraseFinal = ``
+    function cadastrar(){
+        let cadastrar = ipt_cadastro.value;
+        alimentos.push(cadastrar)
+        console.log(alimentos);
+    }
+
+    function qtd_verificar(){
+        let qtd_alimentos = alimentos.length;
+        if (qtd_alimentos < 3){
+            fraseFinal = `Desse jeito, o Luffy devora até o navio`
+        } else if(qtd_alimentos <= 7){
+            fraseFinal = `O comilão do Luffy não vai deixar sobrar nenhuma comida`
+        } else if(qtd_alimentos <= 10){
+            fraseFinal = `Assim, talvez sobre um pouco para a tripulação`
+        } else if (qtd_alimentos > 10){
+            fraseFinal = `Desse jeito vai ter comida para todo mundo e ainda consigo guardar um pouco para a senhorita Nami!`
+        }
+
+        resultado_qtd.innerHTML = fraseFinal
+    }
+
+    function Pesquisar(){
+        let pesquisa = ipt_pesquisa.value;
+        let i = 0;
+        let comida_repetida = 0;
+        let fraseFinal = ``
+        while (i < alimentos.length){
+            if(alimentos.includes(pesquisa)){
+                if(alimentos[i] == pesquisa){
+                    comida_repetida++
+                }
+                fraseFinal = `Temos a comida ${pesquisa} e há ${comida_repetida} unidade(s) dela`
+            }else {
+                fraseFinal = `Alguém vai ter que comprar ${pesquisa}, tá fazendo falta...`
+            }
+            i++
+        }
+        exibir.innerHTML = fraseFinal
+    }
+
+    function estoque() {
+        exibir.innerHTML = "";
+        let itensContados = []; 
+
+        for (let i = 0; i < alimentos.length; i++) {
+            let comidaAtual = alimentos[i];
+
+            if (itensContados.indexOf(comidaAtual) == -1) {
+                let contador = 0;
+                for (let j = 0; j < alimentos.length; j++) {
+                    if (alimentos[j] == comidaAtual) {
+                        contador++;
+                    }
+                }
+            
+                exibir.innerHTML += `- ${comidaAtual} (${contador} unidade(s))<br>`;
+                itensContados.push(comidaAtual);
+            }
+        }
+}
+</script>
+</html>

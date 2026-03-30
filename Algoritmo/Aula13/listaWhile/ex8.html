@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span>Coloque um número</span><br>
+    <input type="text" id="ipt_num"><br><br>
+    <span>Coloque uma frase</span><br>
+    <input type="text" id="ipt_frase"><br><br>
+    <button onclick="falar()">Papagaio</button>
+</body>
+<script>
+    function falar(){
+        let numero = Number(ipt_num.value);
+        let frase = ipt_frase.value;
+        let contador = 1
+
+        while(contador <= numero){
+            alert(frase)
+            contador ++
+        }
+    }
+</script>
+</html>

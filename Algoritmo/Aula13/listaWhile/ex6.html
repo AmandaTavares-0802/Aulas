@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="ipt_num" placeholder="Um número de 20 a 100"><br><br>
+    <button onclick="multiplo()">Adoro múltiplos de 5</button>
+    <div id="resultado"></div>
+</body>
+<script>
+    function multiplo(){
+        let numero = Number(ipt_num.value)
+        let fraseFinal = ``
+        let contador = 0
+
+        if (numero >=20 && numero <= 100){
+            while(contador <= numero){
+                if (contador % 5 === 0){
+                    fraseFinal += `${contador}<br>`
+                }
+                contador++
+            }
+        } else{
+            fraseFinal += `Coloque um número entre 20 a 100`
+        }
+
+        resultado.innerHTML = fraseFinal
+    }
+</script>
+</html>

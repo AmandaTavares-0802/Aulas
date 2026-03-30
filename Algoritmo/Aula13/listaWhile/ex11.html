@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="ipt_2a9" placeholder="Tabuada do 2 ao 9"><br><br>
+    <input type="text" id="ipt_num_tabuada" placeholder="Até que número deve ser multiplicado"><br><br>
+    <button onclick="tabuada()">Ver Tabuada</button>
+    <div id="resultado"></div>
+</body>
+<script>
+    function tabuada(){
+        let tabuada = Number(ipt_2a9.value)
+        let numero = Number(ipt_num_tabuada.value)
+        let contador = 1;
+        let fraseFinal = ``;
+
+        if (tabuada >=2 && tabuada <= 9){
+            while(contador <= numero){
+                let cor = ((tabuada * contador) % 2 === 0) ? 'red' : 'blue'
+                fraseFinal += `<span style="color: ${cor};">${tabuada} x ${contador} = ${tabuada * contador}</span><br>`
+
+                contador++
+            }
+        } else{
+            fraseFinal += `Um número de 2 a 9 😡`
+        }
+
+        resultado.innerHTML = fraseFinal
+    }
+</script>
+</html>

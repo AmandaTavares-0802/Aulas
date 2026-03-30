@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Números cabalísticos</h3>
+    <button onclick="contar()">Números</button>
+    <div id="resultado"></div>
+</body>
+<script>
+    function contar(){
+        let cabalisticos = [3, 4, 7, 10, 12];
+        let contador = 1;
+        let fraseFinal = ``
+
+        while(contador <= 30){
+            if(cabalisticos.includes(contador)){
+                fraseFinal += ``
+            } else{
+                fraseFinal += `<br> ${contador}`
+            }
+            contador++
+        }
+
+        resultado.innerHTML = fraseFinal
+    }
+</script>
+</html>

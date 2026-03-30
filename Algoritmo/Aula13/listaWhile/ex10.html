@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span>Quantas voltas o carro dará em uma corrida</span><br>
+    <input type="text" id="ipt_num_corridas"><br><br>
+    <button onclick="corrida()">Iniciar corrida!</button>
+    <div id="resultado"></div>
+</body>
+<script>
+    function corrida(){
+        let voltas = Number(ipt_num_corridas.value);
+        let contador = 1;
+        let fraseFinal = ``;
+
+        while(contador <= voltas){
+            fraseFinal += `Carro dando a ${contador}ª volta<br><br>`
+            contador++
+        }
+
+        fraseFinal += `Corrida finalizada`
+        resultado.innerHTML = fraseFinal
+    }
+</script>
+</html>
