@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doceria</title>
+    <style>
+        .pai{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+
+        .container-1{
+            max-width: 250px;
+            background-color: bisque;
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        .container-2{
+            max-width: 250px;
+            background-color: bisque;
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        .btn-flex{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="pai">
+        <div class="container-1">
+        <h4>Coloque a quantidade de doces:</h4>
+            <input type="text" id="ipt_qtd_Macarons" placeholder="Macarons"><br><br>
+            <input type="text" id="ipt_qtd_Brigadeiros" placeholder="Brigadeiros"><br><br>
+            <input type="text" id="ipt_qtd_Cupcakes" placeholder="Cupcakes"><br><br>
+            <input type="text" id="ipt_qtd_Cheesecakes" placeholder="Cheesecakes"><br><br>
+        </div>
+        <div class="container-2">
+            <h4>Coloque o preço de cada doce:</h4>
+            <input type="text" id="ipt_preco_Macarons" placeholder="Macarons"><br><br>
+            <input type="text" id="ipt_preco_Brigadeiros" placeholder="Brigadeiros"><br><br>
+            <input type="text" id="ipt_preco_Cupcakes" placeholder="Cupcakes"><br><br>
+            <input type="text" id="ipt_preco_Cheesecakes" placeholder="Cheesecakes"><br><br>
+         </div>
+    </div>
+    <div class="btn-flex">
+        <button onclick="verificar()">Verificar Vendas</button>
+    </div>
+    <div id="resultado">
+    </div>
+</body>
+<script>
+    function verificar(){
+        // Quantidade de cada doce
+        let qtd_macarons = Number(ipt_qtd_Macarons.value)
+        let qtd_brigadeiros = Number(ipt_qtd_Brigadeiros.value)
+        let qtd_cupcakes = Number(ipt_qtd_Cupcakes.value)
+        let qtd_cheese = Number(ipt_qtd_Cheesecakes.value)
+        let qtd_doces = qtd_macarons + qtd_brigadeiros + qtd_cheese + qtd_cupcakes;
+
+        // Preco de cada doce
+        let preco_Macarons = Number(ipt_preco_Macarons.value)
+        let preco_Brigadeiros = Number(ipt_preco_Brigadeiros.value)
+        let preco_Cupcakes = Number(ipt_preco_Cupcakes.value)
+        let preco_cheese = Number(ipt_preco_Cheesecakes.value)
+
+        let frase_final = ``;
+
+        let qMacarons = qtd_macarons;
+        let qBrigadeiros = qtd_brigadeiros;
+        let qCupcakes = qtd_cupcakes;
+        let qChesse = qtd_cheese;
+
+        if ((qtd_macarons >= 0 && qtd_brigadeiros >= 0 && qtd_cupcakes >= 0 && qtd_cheese >= 0) && (preco_Brigadeiros>=0 && preco_Cupcakes >=0 && preco_Macarons>=0 && preco_cheese>=0)){
+            for(let i = 1; i <= qtd_doces;){
+                if (qtd_macarons > 0){
+                    for(let macarons = 1; macarons <= qMacarons; qMacarons-- && i++){
+                        frase_final += `Venda ${i} - <img src="https://static.wixstatic.com/media/0575df_8095ce1b01264728b02f80afbec8b46d~mv2.jpg/v1/fill/w_568,h_568,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/0575df_8095ce1b01264728b02f80afbec8b46d~mv2.jpg" alt="" width=100px> - R$${preco_Macarons} <br>`
+                    }
+                }
+                if (qtd_brigadeiros > 0){
+                    for(let briga = 1; briga <= qBrigadeiros; qBrigadeiros-- && i++){
+                        frase_final += `Venda ${i} - <img src="https://admin.docepedia.com/site/uploads/2024/08/brigadeiros-vender-d.jpg" alt="" width=100px> - R$${preco_Brigadeiros} <br>`
+                    }
+                }
+                if (qtd_cupcakes > 0){
+                    for(let cupcakes = 1; cupcakes <= qCupcakes; qCupcakes-- && i++){
+                        frase_final += `Venda ${i} - <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV1huS3ai58sL9xn4tvdxk30JryGRDyhEJvg&s" alt="" width=100px> - R$${preco_Cupcakes} <br>`
+                    }
+                }
+                if (qtd_cheese > 0){
+                    for(let cheese = 1; cheese <= qChesse; qChesse-- && i++){
+                        frase_final += `Venda ${i} - <img src="https://docepedia.com/_next/image?url=https%3A%2F%2Fadmin.docepedia.com%2Fsite%2Fuploads%2F2019%2F11%2Fcheescake-de-chocolate.d-768x768-1.jpg&w=1080&q=75" alt="" width=100px> - R$${preco_cheese} <br>`
+                    }
+                }
+            }
+        } else{
+            frase_final = `Valor inválido (Número negativo ou letra)`
+        }
+
+        let valor_final = (qtd_macarons * preco_Macarons) + (qtd_brigadeiros * preco_Brigadeiros) + (qtd_cupcakes * preco_Cupcakes) + (qtd_cheese * preco_cheese);
+
+        frase_final += `<br>Com a quantidade de ${qtd_macarons} Macarons, ${qtd_brigadeiros} Brigadeiros, ${qtd_cupcakes} Cupcakes e ${qtd_cheese} Cheesecakes, a venda totalizará R$${valor_final}`
+
+        resultado.innerHTML = frase_final
+    }
+</script>
+</html>

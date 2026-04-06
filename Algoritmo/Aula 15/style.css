@@ -1,0 +1,85 @@
+.flex-item {
+    width: 100px;
+    height: 100px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+
+.pai{
+    background-color: burlywood;
+}
+
+.container{
+    min-height: 400px;
+}
+
+.row-1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+
+.quadrado1{
+    background-color: brown;
+}
+.quadrado2{
+    background-color: chocolate;
+}
+.quadrado3{
+    background-color: cornsilk;
+}
+
+.container>.row-1>.quadrado1{
+    width: 500px;
+    height: 100px;
+    order: 3;
+}
+.container>.row-1>.quadrado2{
+    width: 350px;
+    height: 100px;
+}
+.container>.row-1>.quadrado3{
+    width: 400px;
+    height: 100px;
+}
+
+.row-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+
+.container>.row-2>.quadrado1{
+    width: 150px;
+    height: 200px;
+    order: 2;
+}
+.container>.row-2>.quadrado2{
+    width: 300px;
+    height: 200px;
+    order: 3;
+}
+.container>.row-2>.quadrado3{
+    width: 200px;
+    height: 200px;
+    order: 1;
+}
+
+@media (max-width: 1668px){
+    .container>.row-1>.quadrado1{
+        width: 30%;
+        order: 3;
+    }
+    .container>.row-1>.quadrado2{
+        width: 30%;
+        height: 100px;
+    }
+    .container>.row-1>.quadrado3{
+        width: 30%;
+        height: 100px;
+    }
+}
