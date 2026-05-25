@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja da Dona Matilde</title>
+</head>
+<body>
+    <h1>Loja de Antiguidades da Dona Matilde</h1>
+    <input type="text" id="ipt_cadastrar_ant" placeholder="Cadastrar Antiguidade"><br><br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="verificar()">Verificar Estoque</button>
+    <div id="verificar_estoque"></div><br><br>
+    <input type="text" id="ipt_pesquisa">
+    <button onclick="pesquisa()">Pesquisar</button>
+    <div id="id_pesquisa"></div><br><br>
+    <input type="text" id="ipt_nome_atual" placeholder="Item que quer editar"><br><br>
+    <input type="text" id="ipt_novo_nome" placeholder="Nome novo do item"><br><br>
+    <button onclick="alterar()">Alterar Nome</button>
+    <div id="id_edicao"></div><br><br>
+    <input type="text" id="ipt_remover_item"><br><br>
+    <button onclick="remover()">Remover item</button>
+    <div id="id_remover"></div>
+</body>
+<script>
+    let lista = [];
+    // Parte 1)
+    function cadastrar(){
+        let antiguidade = ipt_cadastrar_ant.value;
+        lista.push(antiguidade);
+        console.log(lista)
+    }
+
+    function verificar(){
+        let frase_verificada = ""
+        let quantidade = lista.length
+        if (quantidade < 3){
+            frase_verificada = 'A loja está quase vazia, precisamos de mais peças raras!'
+        } else if (quantidade <= 7){
+            frase_verificada = 'Temos algumas peças, mas ainda podemos melhorar o acervo'
+        } else if (quantidade <= 10){
+            frase_verificada = 'Ótimo! A loja já está bem interessante para os clientes'
+        } else if (quantidade > 10){
+            frase_verificada = 'Excelente! Nossa loja está cheia de relíquias incríveis!'
+        }
+
+        verificar_estoque.innerHTML = frase_verificada
+    }
+
+    // Parte 2)
+    function pesquisa(){
+        let pesquisa = ipt_pesquisa.value;
+        let frase_pesquisada = '';
+        let unidade = 0;
+        for(let i = 0; i < lista.length; i++){
+            if(lista[i] === pesquisa){
+                unidade++;
+            }
+        }
+        if(unidade <= 0){
+            frase_pesquisada = `Não encontramos o item ${pesquisa}, talvez seja hora de procurar essa raridade!`
+        } else{
+            frase_pesquisada = `Temos o item ${pesquisa} e há ${unidade} unidade(s) dele na loja`
+        }
+
+        id_pesquisa.innerHTML = frase_pesquisada
+    }
+
+    // Parte 3)
+    function alterar(){
+        let itemAtual = ipt_nome_atual.value;
+        let itemNovo = ipt_novo_nome.value;
+        let frase_edicao = '';
+        let inclui = false;
+
+        for(let i = 0; i < lista.length; i++){
+            if(lista[i] === itemAtual){
+                lista[i] = itemNovo
+                inclui = true
+            }
+        }
+
+        if(inclui){
+            frase_edicao = `O item '${itemAtual}' foi atualizado para '${itemNovo}'`
+        } else{
+            frase_edicao = `O item '${itemAtual}' não foi encontrado na loja`
+        }
+
+        id_edicao.innerHTML = frase_edicao;
+    }
+
+    function remover(){
+        let remover_item = ipt_remover_item.value;
+        let frase_remover = '';
+                             
+        for(let i = lista.length - 1; i >= 0; i--){ 
+            if(lista[i] === remover_item){                
+                lista.splice(i, 1); 
+            }                
+        }                
+        console.log(lista);                
+    }
+
+
+      
+</script>
+</html> 

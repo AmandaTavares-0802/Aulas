@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gatinhos API</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+    }
+
+    body {
+        text-align: center;
+        padding: 20px;
+        background-color: whitesmoke;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-bottom: 50px;
+        margin-top: 20px;
+    }
+
+    .container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #resultado {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        padding: 20px;
+        background-color: navy;
+        border-radius: 5px;
+        min-height: 260px;
+        width: 90%;
+    }
+
+    .itens {
+        background-color: cornflowerblue;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    img {
+        display: block;
+        object-fit: cover;
+    }
+
+    p {
+        text-align: center;
+        line-height: 50px;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <h1>Gatinhos muito fofinhos</h1>
+    <button onclick="gatinhos()">Mostrar gatinhos</button>
+    <div class="container">
+        <div id="resultado">
+
+        </div>
+    </div>
+</body>
+<script>
+    let contador = 0
+    async function gatinhos() {
+        contador++
+        let retornarAPI = await fetch("https://api.thecatapi.com/v1/images/search")
+        let retornoProntoConvertido = await retornarAPI.json();
+        resultado.innerHTML += `
+        <div class="itens">
+        <img src="${retornoProntoConvertido[0].url}" width="200px" height="200px">
+        <p>Imagem ${contador}</p>
+        </div>
+        `;
+    }
+</script>
+
+</html>

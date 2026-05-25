@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            height: 10px;
+        }
+        button{
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <span>Gerar uma nota de aluno entre 0 e 10</span><button onclick="nota()">Gerar nota</button>
+    <div id="resultado_nota"></div><br><br>
+    <span>Gerar uma frequência de aluno entre 0 e 100</span><button onclick="frequencia()">Gerar frequência</button>
+    <div id="resultado_frequencia"></div><br><br>
+    <span>Vamos ver a situação deste aluno</span><button onclick="situacao()">Ver situacao</button>
+</body>
+<script>
+    let notaAluno;
+    let frequenciaAluno;
+    function nota(){
+        let num_alea = Math.random()
+        let nota_sorteada = parseInt(num_alea * ((10*0.01) + 9)*100)/100;
+
+        resultado_nota.innerHTML = nota_sorteada.toFixed(2);
+        notaAluno = nota_sorteada.toFixed(2)
+        console.log(notaAluno);
+    }
+
+    function frequencia(){
+        let num_alea = Math.random()
+        let frequencia_sorteada = parseInt(num_alea * ((100*0.01) + 99)*100)/100;
+
+        resultado_frequencia.innerHTML = frequencia_sorteada.toFixed(2);
+        frequenciaAluno = frequencia_sorteada.toFixed(2)
+        console.log(frequenciaAluno);
+    }
+
+    function situacao(){
+        let frase = ``;
+
+        if (notaAluno < 6){
+            frase = `Aluno abaixo da média esperada`
+        } else if (notaAluno >= 6){
+            frase = `Aluno está na média ou maior do que ela`
+        }
+
+        if (frequenciaAluno < 60){
+            frase += `\nAluno com baixa frequência`
+        } else if (frequenciaAluno >= 60){
+            frase += `\nAluno com frequencia ok`
+        }
+
+        alert(frase)
+    }
+    
+</script>
+</html>

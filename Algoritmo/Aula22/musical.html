@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Playlist Musical</title>
+</head>
+<body>
+    <h1>Vamos adicionar e remover uma música</h1>
+    <label for="titulo">Título</label>
+    <input type="text" id="ipt_musica_titulo" name="titulo" placeholder="Digite o titulo da música...">
+    <label for="banda">Banda</label>
+    <input type="text" id="ipt_musica_banda" name="banda" placeholder="Digite o nome da banda...">
+    <label for="duracao">Duração</label>
+    <input type="text" id="ipt_musica_duracao" name="duracao" placeholder="Digite a duração em minutos...">
+    <label for="anoLan">Ano de Lançamento</label>
+    <input type="text" id="ipt_musica_lanca" placeholder="Digite o ano de Lançamento..." name="anoLan"><br><br>
+    <label for="avaliacoes">Avaliações</label>
+    <input type="text" id="ipt_musica_avalia" placeholder="'3.2,4.3,5,2'">
+    <label for="integrantes">Integrantes</label>
+    <input type="text" id="ipt_musica_integrantes" placeholder="'Mateus, Clara, Rayssa'"><br><br>
+    <button onclick="adicionarMusica()">Adicionar</button>    
+    <button onclick="listarMusicas()">Listar Músicas</button>
+    <button onclick="removerMusica()">Remover Música</button>
+    <p>Ps: Para remover uma  música é só colocar o título</p>
+    <hr>
+    <div id="resultado" >Resultado <hr></div>
+
+    <h2>Atualizar o ano de Lançamento</h2>
+    <label for="titulo_update">Titulo</label>
+    <input type="text" id="ipt_titulo_atualizar" placeholder="Digite o nome da musica" name="titulo_update">
+    <label for="anoUpdate">Ano Atualizado</label>
+    <input type="text" id="ipt_ano_atualizar" placeholder="Digite o Ano..." name="anoUpdate"><br><br>
+    <button onclick="atualizarAnoLancamento()">Atualizar o Ano de lançamento</button>
+
+    <hr>
+
+    <h2>Mostrar média de avaliações</h2>
+    <button onclick="mediaAvaliacoes()">Media</button>
+    <div id="media_res"></div>
+
+    <hr>
+
+    <h2>Buscando Banco por integrante</h2>
+    <label for="BuscarBanda">Buscar Banda com Integrante</label>
+    <input type="text" id="ipt_buscar_banda" name="BuscarBanda" placeholder="Digite um integrante...">
+    <button onclick="buscarBandaPorIntegrante()">Buscar Banda</button>
+
+    <div id="buscarIntegrante"></div>
+
+</body>
+<script>
+    let musicas = []
+
+    function adicionarMusica(){
+        let titulo = ipt_musica_titulo.value
+        let banda = ipt_musica_banda.value
+        let duracao = Number(ipt_musica_duracao.value)
+        let lancamento = ipt_musica_lanca.value
+        let avaliacao = ipt_musica_avalia.value
+        let validarAvaliacao = false
+        let nomes = ipt_musica_integrantes.value
+
+        let avaliacoes = avaliacao.split(",")
+        for (let i = 0; i < avaliacoes.length; i++){
+            avaliacoes[i] = Number(avaliacoes[i].trim())
+        }
+
+        let integrantes = nomes.split(",")
+        for (let i = 0; i < integrantes.length; i++) {
+            integrantes[i] = integrantes[i].trim();
+        }
+        
+        for (let i = 0; i < avaliacoes.length; i++) {
+            if (avaliacoes[i] < 1 || avaliacoes[i] > 5) {
+                validarAvaliacao = true; 
+            }
+        }
+
+        if (validarAvaliacao) {
+            alert("A nota deve estar entre 1 e 5!");
+        } else {
+            let musica = {
+                "titulo": titulo,
+                "banda": banda,
+                "duracao": duracao,
+                "lancamento": lancamento,
+                "avaliacoes": avaliacoes, 
+                "integrantes": integrantes
+            };
+        }
+        musicas.push(musica)
+        console.log(musicas);
+    }
+
+    function listarMusicas(){
+        resultado.innerHTML = ``
+
+        if(musicas.length === 0){
+            resultado.innerHTML += `
+                <br>Nenhuma música cadastrada<hr>
+            `
+            return
+        }
+
+        for (let i = 0; i < musicas.length; i++) {
+                resultado.innerHTML += `
+                    <br>Título: ${musicas[i].titulo} <br><br>
+                    Banda: ${musicas[i].banda} ||
+                    Duração: ${musicas[i].duracao} ||
+                    Lançamento: ${musicas[i].lancamento} ||
+                    Avaliacao: ${musicas[i].avaliacoes} ||
+                    Integrantes: ${musicas[i].integrantes}
+                    <hr>
+                `
+            
+            
+        }
+    }
+
+    function removerMusica(){
+        let titulo_dig = ipt_musica_titulo.value
+
+        if(titulo_dig.trim() === ""){
+            resultado.innerHTML = `Informe o título para remover. <hr>`
+        } else 
+
+        for (let i = musicas.length - 1; i >= 0; i--){
+            if (musicas[i].titulo.includes(titulo_dig)){
+                musicas.splice(i,1)
+            }
+        }
+    }
+
+    function atualizarAnoLancamento(){
+        let titulo_dig = ipt_titulo_atualizar.value;
+        let anoAtualizado = ipt_ano_atualizar.value
+
+        for(let i = musicas.length - 1; i >= 0; i--){
+            if(musicas[i].titulo.includes(titulo_dig)){
+                musicas[i].lancamento = anoAtualizado
+            }
+        }
+    }
+
+    function mediaAvaliacoes() {
+        media_res.innerHTML = "";
+
+        for (let i = 0; i < musicas.length; i++) {
+            let soma = 0;
+            let listaNotas = musicas[i].avaliacao;
+
+            for (let j = 0; j < listaNotas.length; j++) {
+                soma += listaNotas[j];
+            }
+
+            let media = soma / listaNotas.length;
+            media_res.innerHTML += `
+                <hr>
+                Música: ${musicas[i].titulo} <br>
+                Média:${media.toFixed(1)}<br>
+            `;
+        }
+    }
+
+    function buscarBandaPorIntegrante(){
+        let integrante_dig = ipt_buscar_banda.value
+        for(let i = 0; i < musicas.length; i++){
+            if (musicas[i].integrantes.includes(integrante_dig)){
+                buscarIntegrante.innerHTML = `
+                    <hr>
+                    Integrante pesquisado: ${integrante_dig}<br>
+                    Banda: ${musicas[i].banda}
+                `
+            }
+        }
+    }
+</script>
+</html>

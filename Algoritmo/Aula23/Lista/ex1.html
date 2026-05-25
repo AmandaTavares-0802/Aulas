@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Aluno</title>
+</head>
+
+<body>
+    <input type="text" id="nomedig" placeholder="Nome do aluno">
+    <input type="text" id="radig" placeholder="RA do aluno">
+    <input type="text" id="cursodig" placeholder="Curso do Aluno">
+    <input type="text" id="semestredig" placeholder="Semestre"><br><br>
+    <button onclick="cadastrar()">Cadastrar Aluno</button>
+    <button onclick="mostrar()">Mostrar</button>
+    <div id="resultado"></div>
+</body>
+<script>
+    let alunos = [];
+    function cadastrar() {
+        let nome = nomedig.value
+        let ra = radig.value
+        let curso = cursodig.value
+        let semestre = semestredig.value
+
+        let aluno = {
+            nome,
+            ra,
+            curso,
+            semestre
+        }
+
+        alunos.push(aluno)
+    }
+
+    function mostrar() {
+        
+        resultado.innerHTML = ``
+        for (let i = 0; i < alunos.length; i++) {
+            let aluno = alunos[i]
+
+            resultado.innerHTML += `
+                Nome: ${aluno.nome} <br>
+                RA: ${aluno.ra} <br>
+                Curso: ${aluno.curso} <br>
+                Semestre: ${aluno.semestre} <hr>
+            `
+        }
+    }
+
+
+</script>
+
+</html>

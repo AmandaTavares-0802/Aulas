@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Média da Turma</title>
+</head>
+
+<body>
+    <div id="resultado"></div>
+</body>
+<script>
+    let alunos = [
+        {
+            "nome": "Amanda",
+            "nota": 9.1
+        },
+        {
+            "nome": "Lucas",
+            "nota": 5
+        },
+        {
+            "nome": "Sara",
+            "nota": 8.9
+        },
+        {
+            "nome": "Nicole",
+            "nota": 4
+        },
+        {
+            "nome": "Rafael",
+            "nota": 4
+        }
+    ]
+
+    let somaNotas = 0;
+    let alunoMaior = alunos[0];
+    let alunoMenor = alunos[0];
+
+    for (let i = 0; i < alunos.length; i++) {
+        somaNotas += alunos[i].nota;
+
+        if (alunos[i].nota > alunoMaior.nota) {
+            alunoMaior = alunos[i];
+        }
+
+        if (alunos[i].nota < alunoMenor.nota) {
+            alunoMenor = alunos[i];
+        }
+    }
+
+    const mediaTurma = somaNotas / alunos.length;
+
+    resultado.innerHTML = `
+        Média da Turma: ${mediaTurma.toFixed(2)} <br>
+        Maior Nota: ${alunoMaior.nome} - ${alunoMaior.nota}<br>
+        Menor Nota: ${alunoMenor.nome} - ${alunoMenor.nota}
+    `
+</script>
+
+</html>

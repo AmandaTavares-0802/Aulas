@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="buscarCEP01()">Pesquisar</button>
+    <button onclick="buscarCEP02()">Pesquisar</button>
+</body>
+<script>
+    function buscarCEP01(){
+        console.log("Teste 1: Inicio");
+        let retornarAPI = fetch("https://viacep.com.br/ws/01001000/json/")
+        .then((retornoPronto) => {
+            return retornoPronto.json()
+            
+        })
+        .then((retornoProntoConvertido) => {
+            console.log("Teste 2: Retorno: ", retornoProntoConvertido);
+            
+        })
+        console.log("Teste 3: Fim");
+        
+        
+    }
+
+    async function buscarCEP02(){
+        console.log("Teste 1: Inicio");
+        let retornarAPI = await fetch("https://viacep.com.br/ws/01001000/json/")
+        let retornoProntoConvertido = await retornarAPI.json();
+        console.log("Teste 2: Retorno - ", retornoProntoConvertido);
+    }
+</script>
+</html>

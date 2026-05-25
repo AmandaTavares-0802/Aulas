@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jo-ken-po</title>
+    <style>
+        .container{
+            border: 2px black solid;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .btn_jogar{
+            width: 200px;
+            height: 200px;
+        }
+
+        img{
+            height: 200px;
+            width: 200px;
+        }
+
+        .resultado{
+            margin-top: 30px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        #placar{
+            border: 1px black solid;
+            width: 180px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="div_jogador1" class="containt"></div>
+        <button onclick="jogar()" class="btn_jogar">Jogar</button>
+        <div id="div_jogador2" class="containt"></div>
+    </div>
+    <div class="resultado">
+        <div id="placar">
+        </div>
+    </div>
+</body>
+<script>
+    let vitoria_jogador1 = 0
+    let vitoria_jogador2 = 0
+    function jogar(){
+        let jogador1_escolha = ``;
+        let jogador2_escolha = ``;
+        let aleatorioJ1 = parseInt(Math.random() * (3-1+1) + 1)
+        let aleatorioJ2 = parseInt(Math.random() * (3-1+1) + 1)
+        console.log(aleatorioJ1); 
+
+        if(aleatorioJ1 == 1){
+            jogador1_escolha = `<img src="https://images.vexels.com/media/users/3/206146/isolated/preview/7078def32da7380932e1b5895a2cbce5-folhas-de-papel-planas.png" alt="papel">`
+        }else if(aleatorioJ1 == 2){
+            jogador1_escolha = `<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1Cri23QViVBpJXzcvLnFLhW_znanSh6x33Q&s" alt="pedra">`
+        } else {
+            jogador1_escolha = `<img src="https://images.vexels.com/media/users/3/141161/isolated/preview/c3f445b9a9811b8f634f8616b9f9a61b-icone-de-tesoura.png" alt="tesoura">`
+        }
+
+        if (aleatorioJ2 == 1){
+            jogador2_escolha = `<img src="https://images.vexels.com/media/users/3/206146/isolated/preview/7078def32da7380932e1b5895a2cbce5-folhas-de-papel-planas.png" alt="papel">`
+        } else if ( aleatorioJ2 == 2){
+            jogador2_escolha = `<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1Cri23QViVBpJXzcvLnFLhW_znanSh6x33Q&s" alt="pedra">`
+        } else{
+            jogador2_escolha = `<img src="https://images.vexels.com/media/users/3/141161/isolated/preview/c3f445b9a9811b8f634f8616b9f9a61b-icone-de-tesoura.png" alt="tesoura">`
+        }
+
+        div_jogador1.innerHTML = jogador1_escolha;
+        div_jogador2.innerHTML = jogador2_escolha
+
+        if((aleatorioJ1 == 1 && aleatorioJ2 == 2) || (aleatorioJ1 == 2 && aleatorioJ2 == 3) || (aleatorioJ1 == 3 && aleatorioJ2 == 1)){
+            vitoria_jogador1 += 1
+            placar.innerHTML = `
+                <p>O jogador 1 venceu</p>
+                <p>Jogador 1: ${vitoria_jogador1} vitória(s)</p>
+                <p>Jogador 2: ${vitoria_jogador2} vitória(s)</p>
+            `
+        } else if(aleatorioJ1 == aleatorioJ2){
+            placar.innerHTML = `
+                <p>Empate</p>
+                <p>Jogador 1: ${vitoria_jogador1} vitória(s)</p>
+                <p>Jogador 2: ${vitoria_jogador2} vitória(s)</p>
+            `
+        } else{
+            vitoria_jogador2 += 1
+            placar.innerHTML = `
+                <p>O jogador 2 venceu</p>
+                <p>Jogador 1: ${vitoria_jogador1} vitória(s)</p>
+                <p>Jogador 2: ${vitoria_jogador2} vitória(s)</p>
+            `
+        }
+    }
+</script>
+</html>

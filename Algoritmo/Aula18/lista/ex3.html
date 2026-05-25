@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .dado{
+        margin-top: 20px;
+        height: 100px;
+        width: 100px;
+        color: white;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+<body>
+    <button onclick="dado()">Jogar dado</button>
+    <div id="resultado" class="dado"></div>
+</body>
+<script>
+    function dado(){
+        let num_alea = Math.random()
+        let resultado_teste = parseInt(num_alea * (20-1+1)+1)
+        resultado.innerHTML = `${resultado_teste}`
+    }
+</script>
+</html>

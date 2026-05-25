@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="ipt_nome" placeholder="Digite o nome"><br><br>
+    <input type="text" id="ipt_nota" placeholder="Digite a nota"><br><br>
+    <button onclick="cadastrar()">Registrar Aluno</button>
+    <div id="resultado"></div>
+</body>
+<script>
+    function cadastrar(){
+        let nome = ipt_nome.value;
+        let nota = Number(ipt_nota.value);
+
+        let aluno = {
+            "nome": nome,
+            "nota": nota
+        }
+
+
+        console.log(aluno);
+        
+        
+        resultado.innerHTML += `
+            Aluno: ${aluno.nome}<br>
+            Nota: ${aluno.nota}<br>
+        `
+    }
+</script>
+</html>

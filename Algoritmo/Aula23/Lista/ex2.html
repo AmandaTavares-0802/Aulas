@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto no Carrinho</title>
+</head>
+
+<body>
+    <button onclick="mostrar()">Mostrar</button>
+    <div id="resultado"></div>
+</body>
+<script>
+    let produtos = [
+        {
+            "nome": "Caderno",
+            "preco": "15.00",
+            "quantidade": "2"
+        },
+        {
+            "nome": "Lápis",
+            "preco": "5.00",
+            "quantidade": "3"
+        }
+    ]
+
+    function mostrar() {
+        resultado.innerHTML = ``
+        for (let i = 0; i < produtos.length; i++) {
+            let produto = produtos[i]
+            let precoFormatado = produto.preco.replace(".", ",")
+            let total = produto.preco * produto.quantidade
+
+            resultado.innerHTML += `
+                <br>Produto: ${produto.nome} | Preço: R$ ${precoFormatado} | Quantidade: ${produto.quantidade} | Total: R$ ${total}
+            `
+        }
+
+    }
+</script>
+
+</html>

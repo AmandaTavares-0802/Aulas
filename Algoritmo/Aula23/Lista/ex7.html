@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtro de Produtos</title>
+</head>
+<body>
+    <input type="text" id="ipt_categoria">
+    <button onclick="filtro()">Filtrar</button>
+    <hr>
+    <div id="resultado"></div>
+</body>
+<script>
+    let produtos = [
+        {
+            "nome": "Lapis",
+            "categoria": "Escolar",
+            "preco": "15.00"
+        },
+        {
+            "nome": "Notebook",
+            "categoria": "Eletronico",
+            "preco": "2000.00"
+        },
+        {
+            "nome": "Arroz",
+            "categoria": "Alimento",
+            "preco": "29.00"
+        },
+        {
+            "nome": "Batom",
+            "categoria": "Cosmetico",
+            "preco": "30.99"
+        },
+        {
+            "nome": "Caderno",
+            "categoria": "Escolar",
+            "preco": "20.00"
+        },
+        {
+            "nome": "Celular",
+            "categoria": "Eletronico",
+            "preco": "5000.99"
+        }
+    ]
+
+    function filtro(){
+        let categoriaDig = ipt_categoria.value;
+        resultado.innerHTML = ``
+        
+        for(let i = 0; i < produtos.length;i++){
+            let produto = produtos[i]
+            if(produto.categoria.includes(categoriaDig)){
+                resultado.innerHTML += `
+                    Nome: ${produto.nome}<br>
+                    Categoria: ${produto.categoria}<br>
+                    Preço: ${produto.preco} <hr>
+                `
+            }
+        }
+    }
+</script>
+</html>

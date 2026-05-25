@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Abas de Animais Marinhos</title>
+    <style>
+        /* Estilo para parecer com a imagem enviada */
+        body { font-family: sans-serif; padding: 20px; color: #333; }
+        
+        .tabs {
+            display: flex;
+            gap: 30px;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 10px 5px;
+            cursor: pointer;
+            color: #5eb1ce; /* Azul da imagem */
+            font-size: 16px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            border-bottom: 3px solid #5eb1ce; /* Indicador azul */
+            font-weight: bold;
+        }
+
+        .animal-card {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Navegação de Animais</h2>
+
+    <!-- 1. Estrutura das Abas -->
+    <nav class="tabs">
+        <button class="tab-btn active" onclick="mostrarCategoria('aves', this)">Aves</button>
+        <button class="tab-btn" onclick="mostrarCategoria('mamiferos', this)">Mamíferos</button>
+        <button class="tab-btn" onclick="mostrarCategoria('invertebrados', this)">Invertebrados</button>
+        <button class="tab-btn" onclick="mostrarCategoria('peixes', this)">Peixes</button>
+    </nav>
+
+    <!-- 2. Container de exibição -->
+    <div id="lista-animais">
+        <!-- Os registros aparecerão aqui -->
+    </div>
+
+    <script>
+        // 3. Simulação dos 4 registros do seu Banco de Dados
+        const bancoDeDadosSimulado = [
+            { nome: "Pinguim-de-Magalhães", tipo: "aves", info: "Comum na costa brasileira no inverno." },
+            { nome: "Baleia Jubarte", tipo: "mamiferos", info: "Conhecida pelos seus saltos e cantos." },
+            { nome: "Polvo-comum", tipo: "invertebrados", info: "Possui três corações e sangue azul." },
+            { nome: "Tubarão-Baleia", tipo: "peixes", info: "O maior peixe existente no oceano." },
+            { nome: "a", tipo: "mamiferos", info: "Bla bla bla bla"}
+        ];
+
+        function mostrarCategoria(categoria, botao) {
+            // Atualiza o visual da aba ativa
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            botao.classList.add('active');
+
+            // Filtra os animais do "banco" pela categoria clicada
+            const filtrados = bancoDeDadosSimulado.filter(animal => animal.tipo === categoria);
+
+            // Desenha na tela
+            const container = document.getElementById('lista-animais');
+            if (filtrados.length === 0) {
+                container.innerHTML = "<p>Nenhum animal cadastrado nesta categoria.</p>";
+            } else {
+                container.innerHTML = filtrados.map(a => `
+                    <div class="animal-card">
+                        <strong>${a.nome}</strong>
+                        <p>${a.info}</p>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Inicia a página mostrando a primeira categoria
+        window.onload = () => {
+            mostrarCategoria('aves', document.querySelector('.tab-btn'));
+        };
+    </script>
+
+</body>
+</html>

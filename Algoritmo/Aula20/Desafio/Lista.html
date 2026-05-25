@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" id="ipt_adicionar" placeholder="Digite para adicionar um valor">
+    <button onclick="adicionarFinal()">Adicionar Último</button>
+    <button onclick="removerFinal()">Remover Último</button>
+    <button onclick="removerInicio()">Remover Início</button>
+    <button onclick="adicionarInicio()">Adicionar Início</button>
+    <p id="resultado"></p>
+
+</body>
+<script src="Lista.js"></script>
+<script>
+    let lista = [];
+
+    function pegarValor() {
+        return document.getElementById('ipt_adicionar').value;
+    }
+
+    function atualizarTela() {
+        console.log(lista)
+    }
+
+    function adicionarFinal() {
+        lista = adicionarNoFinal(lista, pegarValor());
+        atualizarTela();
+    }
+
+    function removerFinal() {
+        lista = removerDoFinal(lista);
+        atualizarTela();
+    }
+
+    function removerInicio() {
+        lista = removerDoInicio(lista);
+        atualizarTela();
+    }
+
+    function adicionarInicio() {
+        lista = adicionarNoInicio(lista, pegarValor());
+        atualizarTela();
+    }
+</script>
+</html>

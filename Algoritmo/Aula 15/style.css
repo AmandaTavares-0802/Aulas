@@ -1,5 +1,5 @@
 .flex-item {
-    width: 100px;
+    width: 300px;
     height: 100px;
     border-radius: 4px;
     display: flex;
@@ -33,16 +33,16 @@
 }
 
 .container>.row-1>.quadrado1{
-    width: 500px;
+    width: 20%;
     height: 100px;
     order: 3;
 }
 .container>.row-1>.quadrado2{
-    width: 350px;
+    width: 30%;
     height: 100px;
 }
 .container>.row-1>.quadrado3{
-    width: 400px;
+    width: 30%;
     height: 100px;
 }
 
@@ -69,17 +69,3 @@
     order: 1;
 }
 
-@media (max-width: 1668px){
-    .container>.row-1>.quadrado1{
-        width: 30%;
-        order: 3;
-    }
-    .container>.row-1>.quadrado2{
-        width: 30%;
-        height: 100px;
-    }
-    .container>.row-1>.quadrado3{
-        width: 30%;
-        height: 100px;
-    }
-}

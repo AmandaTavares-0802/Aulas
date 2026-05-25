@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizando Propriedades</title>
+</head>
+<body>
+    <input type="text" id="ipt_titular" placeholder="Nome do Titular">
+    <input type="text" id="ipt_numero" placeholder="Quantidade de Dinheiro">
+    <button onclick="depositar()">Depositar</button>
+    <button onclick="sacar()">Sacar</button>
+    <div id="resultado"></div>
+</body>
+<script>
+    let contas = [
+        {
+            "titular": "Amanda",
+            "saldo": 40.00,
+            "banco": "Safra"
+        },
+        {
+            "titular": "Sara",
+            "saldo": 100.00,
+            "banco": "Itaú"
+        }
+    ]
+
+    function depositar(){
+        let titularDig = ipt_titular.value
+        let dinheiro = Number(ipt_numero.value)
+        resultado.innerHTML = ``
+
+        for(let i = 0; i < contas.length; i++){
+            let conta = contas[i];
+
+            if (conta.titular.includes(titularDig)){
+                conta.saldo = conta.saldo + dinheiro
+                
+            }
+
+            resultado.innerHTML += `
+                <hr>
+                Titular: ${conta.titular} <br>
+                Sacar: ${conta.saldo}<br>
+                Banco: ${conta.banco}
+            `
+        }
+
+        console.log(contas);
+    }
+
+    function sacar(){
+        let titularDig = ipt_titular.value
+        let dinheiro = Number(ipt_numero.value)
+        resultado.innerHTML = ``
+
+        for(let i = 0; i < contas.length; i++){
+            let conta = contas[i];
+
+            if (conta.titular.includes(titularDig)){
+                conta.saldo = conta.saldo - dinheiro
+                
+            }
+
+            resultado.innerHTML += `
+                <hr>
+                Titular: ${conta.titular} <br>
+                Sacar: ${conta.saldo}<br>
+                Banco: ${conta.banco}
+            `
+        }
+
+        console.log(contas);
+    }
+</script>
+</html>

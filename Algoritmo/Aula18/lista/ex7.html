@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="sortear()">Quero um número cabalístico!</button>
+    <div id="resultado"></div>
+</body>
+<script>
+    function sortear(){
+        let cabalistico = [3, 4, 7, 10, 12]
+        let num_alea = Math.random()
+        let aleatorio = parseInt(num_alea * (15-1+1) + 1);
+        let verificacao = false
+
+        for(let i = 0; i < cabalistico.length - 1; i++){
+            if(cabalistico[i] == aleatorio){
+                verificacao = true
+                break
+            }
+        }
+
+        if(verificacao){
+            resultado.innerHTML = `Eu ❤️ números cabalísticos!`
+        } else{
+            resultado.innerHTML = `Ah, me dá um número bom na próxima!`
+        }
+
+        console.log(aleatorio);
+        
+    }
+</script>
+</html>

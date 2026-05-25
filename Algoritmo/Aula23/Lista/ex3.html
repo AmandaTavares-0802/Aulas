@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objeto Aninhado</title>
+</head>
+<body>
+    <button onclick="mostrar()">Objeto</button>
+    <div id="resultado"></div>
+</body>
+<script>
+    let clientes = [
+        {
+            "nome": "Rafael",
+            "idade": "20",
+            "endereco": {
+                "rua": "Rua do Tetres",
+                "numero": "230",
+                "cidade": "Britney Spears"
+            }
+        },
+        {
+            "nome": "Amanda",
+            "idade": "18",
+            "endereco": {
+                "rua": "Rua do Tetres",
+                "numero": "233",
+                "cidade": "Britney Spears"
+            }
+        }
+    ]
+
+    function mostrar(){
+        for(let i = 0; i < clientes.length; i++){
+            let cliente = clientes[i];
+
+            resultado.innerHTML += `
+                Nome: ${cliente.nome} <br>
+                Idade: ${cliente.idade} <br>
+                Endereço: ${cliente.endereco.cidade}, ${cliente.endereco.rua} ${cliente.endereco.numero} <br><hr>
+            `
+        }
+    }
+    
+</script>
+</html>
